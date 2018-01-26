@@ -1,0 +1,11 @@
+## Interface: 70300
+## Version: 1.1.0
+## Title: Kirin Aran Addon
+## Authors: Ashlyn
+## SavedVariablesPerCharacter: VERSDC, VERSTar, menuset, VersHealthPoints, versminimapshow, verstoggleshow, Vers_Settings, Vers_DM1, Vers_DM2, Vers_DM3, Skills2
+
+ChatThrottleLib.lua
+LibMSP.lua
+Vers.xml
+Dice.lua
+
