@@ -1,0 +1,273 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+	<Texture name="VERSHighlight" file="Interface\AddOns\TKAAddon\Buttons\BlueHighlight" alphaMode="ADD" virtual="true">
+		<TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+	</Texture>
+
+	<Button name="VersButtonTemplate" virtual="true">
+		<Size x="40" y="22"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Left" file="Interface\AddOns\TKAAddon\Buttons\Blue-Button-Up">
+					<Size x="12" y="22"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.09375" top="0" bottom="0.6875"/>
+				</Texture>
+				<Texture parentKey="Right" file="Interface\AddOns\TKAAddon\Buttons\Blue-Button-Up">
+					<Size x="12" y="22"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.53125" right="0.625" top="0" bottom="0.6875"/>
+				</Texture>
+				<Texture parentKey="Middle" file="Interface\AddOns\TKAAddon\Buttons\Blue-Button-Up">
+					<Size x="12" y="22"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Left" relativePoint="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Right" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.09375" right="0.53125" top="0" bottom="0.6875"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				if ( not self:IsEnabled() ) then
+					self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+					self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+					self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+				end
+			</OnLoad>
+			<OnMouseDown>
+				if ( self:IsEnabled() ) then
+					self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Down");
+					self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Down");
+					self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Down");
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				if ( self:IsEnabled() ) then
+					self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+					self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+					self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+				end
+			</OnMouseUp>
+			<OnShow>
+				if ( self:IsEnabled() ) then
+					-- we need to reset our textures just in case we were hidden before a mouse up fired
+					self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+					self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+					self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+				end
+			</OnShow>
+			<OnDisable>
+				self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+				self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+				self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+			</OnDisable>
+			<OnEnable>
+				self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+				self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+				self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Up");
+			</OnEnable>
+			<OnEnter>
+				if(self.tooltipText ~= nil) then
+					GameTooltip_AddNewbieTip(self, self.tooltipText, 1.0, 1.0, 1.0, self.newbieText);
+				end
+			</OnEnter>
+			<OnLeave>
+				if(self.tooltipText ~= nil) then
+					GameTooltip:Hide();
+				end
+			</OnLeave>
+		</Scripts>
+		<ButtonText name="$parentText" parentKey="Text"/>
+		<NormalFont style="GameFontNormal"/>
+		<HighlightFont style="GameFontHighlight"/>
+		<DisableFont style="GameFontDisable"/>
+		<HighlightTexture inherits="VERSHighlight"/>
+	</Button>
+
+ 	<Button name="VersButtonTemplate2" inherits="VersButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="144" y="21"/>
+		</Size>
+		<NormalFont style="GameFontHighlight"/>
+		<HighlightFont style="GameFontHighlight"/>
+		<DisableFont style="GameFontDisable"/>
+	</Button> 
+
+	<Button name="VersRainbowButtonTemplate" virtual="true">
+		<Size x="40" y="22"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="Left" file="Interface\AddOns\TKAAddon\Buttons\Rainbow-Up">
+					<Size x="12" y="22"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+						<Anchor point="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.09375" top="0" bottom="0.6875"/>
+				</Texture>
+				<Texture parentKey="Right" file="Interface\AddOns\TKAAddon\Buttons\Rainbow-Up">
+					<Size x="12" y="22"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT"/>
+					</Anchors>
+					<TexCoords left="0.53125" right="0.625" top="0" bottom="0.6875"/>
+				</Texture>
+				<Texture parentKey="Middle" file="Interface\AddOns\TKAAddon\Buttons\Rainbow-Up">
+					<Size x="12" y="22"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.Left" relativePoint="TOPRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Right" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<TexCoords left="0.09375" right="0.53125" top="0" bottom="0.6875"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				if ( not self:IsEnabled() ) then
+					self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+					self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+					self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+				end
+			</OnLoad>
+			<OnMouseDown>
+				if ( self:IsEnabled() ) then
+					self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Down");
+					self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Down");
+					self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Down");
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				if ( self:IsEnabled() ) then
+					self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+					self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+					self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+				end
+			</OnMouseUp>
+			<OnShow>
+				if ( self:IsEnabled() ) then
+					-- we need to reset our textures just in case we were hidden before a mouse up fired
+					self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+					self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+					self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+				end
+			</OnShow>
+			<OnDisable>
+				self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+				self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+				self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Blue-Button-Disable");
+			</OnDisable>
+			<OnEnable>
+				self.Left:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+				self.Middle:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+				self.Right:SetTexture("Interface\\AddOns\\TKAAddon\\Buttons\\Rainbow-Up");
+			</OnEnable>
+			<OnEnter>
+				if(self.tooltipText ~= nil) then
+					GameTooltip_AddNewbieTip(self, self.tooltipText, 1.0, 1.0, 1.0, self.newbieText);
+				end
+			</OnEnter>
+			<OnLeave>
+				if(self.tooltipText ~= nil) then
+					GameTooltip:Hide();
+				end
+			</OnLeave>
+		</Scripts>
+		<ButtonText name="$parentText" parentKey="Text"/>
+		<NormalFont style="GameFontNormal"/>
+		<HighlightFont style="GameFontHighlight"/>
+		<DisableFont style="GameFontDisable"/>
+		<HighlightTexture inherits="UIPanelButtonHighlightTexture"/>
+	</Button>
+
+ 	<Button name="VersRainbowButtonTemplate2" inherits="VersRainbowButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="144" y="21"/>
+		</Size>
+		<NormalFont style="GameFontHighlight"/>
+		<HighlightFont style="GameFontHighlight"/>
+		<DisableFont style="GameFontDisable"/>
+	</Button> 
+
+	<Button name="Vers_MinimapButton" parent="Minimap" enableMouse="true" movable="true" hidden="false">
+		<Size>
+			<AbsDimension x="33" y="33"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT"/>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="Vers_MinimapButton_Icon" file="Interface\Icons\Spell_Holy_MagicalSentry">
+					<Size>
+						<AbsDimension x="21" y="21"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="7" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Minimap\MiniMap-TrackingBorder">
+					<Size>
+						<AbsDimension x="56" y="56"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="Vers_MinimapButton_DraggingFrame" hidden="true">
+				<Scripts>
+					<OnUpdate>
+						Vers_MinimapButton_DraggingFrame_OnUpdate()
+					</OnUpdate>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+		<Scripts>
+			<OnLoad>
+				Vers_MinimapButton:RegisterForClicks("LeftButtonUp","RightButtonUp")
+				Vers_MinimapButton:RegisterForDrag("LeftButton","RightButton")
+			</OnLoad>
+			<OnDragStart>
+				Vers_MinimapButton:LockHighlight()
+				Vers_MinimapButton_DraggingFrame:Show()
+			</OnDragStart>
+			<OnDragStop>
+				Vers_MinimapButton:UnlockHighlight()
+				Vers_MinimapButton_DraggingFrame:Hide()
+			</OnDragStop>
+			<OnClick>
+				Vers_MinimapButton_OnClick() -- do your thing in here, arg1 is mouse button clicked
+			</OnClick>
+		</Scripts>
+	</Button>
+	
+	<EditBox name="TKAEditBox" inherits="InputBoxTemplate" virtual="true">
+		<Scripts>
+			<OnEscapePressed>
+				self:Hide()
+			</OnEscapePressed>	
+		</Scripts>
+	</EditBox>
+	
+	
+</Ui>
